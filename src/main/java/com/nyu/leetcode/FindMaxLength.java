@@ -3,7 +3,7 @@ package com.nyu.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
-public class findMaxLength {
+public class FindMaxLength {
 
     public static int findMaxLength(int[] nums) {
         int maxLength = 0;

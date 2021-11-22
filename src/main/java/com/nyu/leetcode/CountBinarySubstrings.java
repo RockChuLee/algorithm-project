@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CountBinarySubstrings{
 
-    public static int countBinarySubstrings(String s) {
+    public static int counting(String s) {
         List<Integer> counts = new ArrayList<Integer>();
         int ptr = 0, n = s.length();
         while (ptr < n) {
@@ -26,6 +26,6 @@ public class CountBinarySubstrings{
 
     public static void main(String[] args) {
         String s = "10101";
-        System.out.println(countBinarySubstrings(s));
+        System.out.println(counting(s));
     }
 }
