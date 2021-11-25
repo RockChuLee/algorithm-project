@@ -52,16 +52,16 @@ public class IsATree {
                 }
             }
         }
-        if(numOfRoots==0) return "E3"; //if no root, must be a cycle
+        if(numOfRoots==0) return "E3"; //if no root, must be PivotIndex cycle
         if(numOfRoots>1) return "E4"; //if more than one roots
         if(root==' ') return "E5"; //if no edge in input string, invalid input error
         return GetExpressionHelper(root, graph);
 
     }
 
-    //true means there is a cycle, false means no cycle
+    //true means there is PivotIndex cycle, false means no cycle
     private static boolean IsCycle(char node, boolean[][] graph, boolean[] visited){
-        if(visited[node-'A']) //node has already been visited, must has a cycle
+        if(visited[node-'A']) //node has already been visited, must has PivotIndex cycle
             return true;
         visited[node-'A'] = true;
         for(int i=0;i<26;i++){
