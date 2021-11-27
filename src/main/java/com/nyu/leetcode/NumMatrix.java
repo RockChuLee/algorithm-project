@@ -2,42 +2,28 @@ package com.nyu.leetcode;
 
 public class NumMatrix {
 
-    private int[][] matrix;
+    int[][] result;
 
     public NumMatrix(int[][] matrix) {
-        this.matrix = matrix;
+        int m = matrix.length;
+        if (m > 0) {
+            int n = matrix[0].length;
+            result = new int[m][n + 1];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    //增加一列解决初始化问题
+                    result[i][j + 1] = result[i][j] + matrix[i][j];
+                }
+            }
+        }
     }
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
         int sum = 0;
-
-        int rowLength = this.matrix.length;
-        int colLength = this.matrix[0].length;
-        int[][] result = new int[rowLength][colLength];
-
-        for (int i = 0; i < rowLength; i++) {
-            for (int j = 0; j < colLength; j++) {
-                if (i != 0 && j != 0) {
-                    result[i][j] = result[i - 1][j] + result[i][j - 1] + this.matrix[i][j] - result[i - 1][j - 1];
-                } else if (i != 0) {
-                    result[i][j] = result[i - 1][j] + this.matrix[i][j];
-                } else if (j != 0) {
-                    result[i][j] = result[i][j - 1] + this.matrix[i][j];
-                } else {
-                    result[i][j] = this.matrix[i][j];
-                }
-            }
+        for (int i = row1; i <= row2; i++) {
+            sum += result[i][col2 + 1] - result[i][col1];
         }
-
-        if (col1 != 0 && row1 != 0) {
-            return result[row2][col2] - result[row1 - 1][col2] - result[row2][col1 - 1] + result[row1 - 1][col1 - 1];
-        } else if (col1 != 0) {
-            return result[row2][col2] - result[row2][col1 - 1];
-        }else if(row1 !=0){
-            return result[row2][col2] - result[row1 - 1][col2];
-        }else {
-            return result[row2][col2];
-        }
+        return sum;
     }
 
     public static void main(String[] args) {
