@@ -1,4 +1,4 @@
-package com.nyu.leetcode;
+package com.nyu.oa.tiktok;
 
 public class AldinCarpet {
     public int canCompleteCircuit(int[] gas, int[] cost) {
