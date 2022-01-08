@@ -9,10 +9,6 @@ public class MinimumWindowSubstring {
     Map<Character, Integer> ori = new HashMap<Character, Integer>();
     Map<Character, Integer> cnt = new HashMap<Character, Integer>();
 
-    public static void main(String[] args) {
-
-    }
-
     public String minWindow(String s, String t) {
         int tLen = t.length();
         for (int i = 0; i < tLen; i++) {
@@ -53,6 +49,10 @@ public class MinimumWindowSubstring {
             }
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }
