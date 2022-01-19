@@ -3,7 +3,6 @@ package com.nyu.leetcode;
 public class ContainsDuplicateII {
 
     public static boolean containsNearbyDuplicate(int[] nums, int k) {
-
         int length = nums.length;
         boolean flag = false;
         for (int i = 0; i < length; i++) {
