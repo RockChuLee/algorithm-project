@@ -1,6 +1,7 @@
 package com.nyu.datastructure.linkedlist;
 
 public class RemoveLinkedListElements {
+    //iterator
     public ListNode removeElements(ListNode head, int val) {
 
         ListNode dummyHead = new ListNode(0);
@@ -17,6 +18,7 @@ public class RemoveLinkedListElements {
 
     }
 
+    //recursion
     public ListNode removeElements1(ListNode head, int val) {
         if (head == null) {
             return head;
