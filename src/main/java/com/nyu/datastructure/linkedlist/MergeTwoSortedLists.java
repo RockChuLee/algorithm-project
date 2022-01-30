@@ -1,8 +1,11 @@
 package com.nyu.datastructure.linkedlist;
 
+// https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/he-bing-liang-ge-you-xu-lian-biao-by-leetcode-solu/
 public class MergeTwoSortedLists {
 
     // recursion
+    // Time Complexity : O(n+m)，其中 n 和 m 分别为两个链表的长度
+    // Space Complexity : O(n+m)，其中 n 和 m 分别为两个链表的长度
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
@@ -18,6 +21,8 @@ public class MergeTwoSortedLists {
     }
 
     // iteration
+    // Time Complexity : O(n+m)，其中 n 和 m 分别为两个链表的长度
+    // Space Complexity : O(1)，我们只需要常数的空间存放若干变量
     public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
         ListNode prehead = new ListNode(-1);
 

@@ -1,6 +1,5 @@
-package com.nyu.leetcode;
+package com.nyu.datastructure.linkedlist;
 
-import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.Random;
 
