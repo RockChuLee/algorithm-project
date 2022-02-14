@@ -1,5 +1,6 @@
 package com.nyu.leetcode;
 
+
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -10,8 +11,8 @@ public class NumberofEnclaves {
     private boolean[][] visited;
 
     // dfs
-    //时间复杂度：O(mn)O(mn)，其中 mm 和 nn 分别是网格 \textit{grid}grid 的行数和列数。深度优先搜索最多访问每个单元格一次，需要 O(mn)O(mn) 的时间，遍历网格统计飞地的数量也需要 O(mn)O(mn) 的时间。
-    //空间复杂度：O(mn)O(mn)，其中 mm 和 nn 分别是网格 \textit{grid}grid 的行数和列数。空间复杂度主要取决于 \textit{visited}visited 数组和递归调用栈空间，空间复杂度是 O(mn)O(mn)。
+    //时间复杂度：O(mn)，其中 m 和 n 分别是网格 grid 的行数和列数。深度优先搜索最多访问每个单元格一次，需要 O(mn) 的时间，遍历网格统计飞地的数量也需要 O(mn) 的时间。
+    //空间复杂度：O(mn)，其中 m 和 n 分别是网格 grid 的行数和列数。空间复杂度主要取决于 visited 数组和递归调用栈空间，空间复杂度是 O(mn)。
 
     public int numEnclaves(int[][] grid) {
         m = grid.length;
@@ -47,13 +48,16 @@ public class NumberofEnclaves {
     }
 
     // bfs
-    //时间复杂度：O(mn)O(mn)，其中 mm 和 nn 分别是网格 \textit{grid}grid 的行数和列数。广度优先搜索最多访问每个单元格一次，需要 O(mn)O(mn) 的时间，遍历网格统计飞地的数量也需要 O(mn)O(mn) 的时间。
-    //空间复杂度：O(mn)O(mn)，其中 mm 和 nn 分别是网格 \textit{grid}grid 的行数和列数。空间复杂度主要取决于 \textit{visited}visited 数组和队列空间，空间复杂度是 O(mn)O(mn)。
+    //时间复杂度：O(mn)，其中 m 和 n 分别是网格 grid 的行数和列数。广度优先搜索最多访问每个单元格一次，需要 O(mn) 的时间，遍历网格统计飞地的数量也需要 O(mn) 的时间。
+    //空间复杂度：O(mn)，其中 m 和 n 分别是网格 grid 的行数和列数。空间复杂度主要取决于 visited 数组和队列空间，空间复杂度是 O(mn)。
 
     public int numEnclaves1(int[][] grid) {
-        int m = grid.length, n = grid[0].length;
-        boolean[][] visited = new boolean[m][n];
+        m = grid.length;
+        n = grid[0].length;
+        visited = new boolean[m][n];
+
         Queue<int[]> queue = new ArrayDeque<int[]>();
+
         for (int i = 0; i < m; i++) {
             if (grid[i][0] == 1) {
                 visited[i][0] = true;
@@ -125,6 +129,14 @@ public class NumberofEnclaves {
             }
         }
         return enclaves;
+    }
+    public static void main(String[] args) {
+        int[][] grid = {{0, 0, 0, 0}, {1, 0, 1, 0}, {0, 1, 1, 0}, {0, 0, 0, 0}};
+
+        NumberofEnclaves numberofEnclaves = new NumberofEnclaves();
+        System.out.println(numberofEnclaves.numEnclaves2(grid));
+
+        Queue<Integer> queue = new ArrayDeque<Integer>();
     }
 }
 
