@@ -19,6 +19,9 @@ package com.nyu.oa.csico;
  * '0' and negative numbers are valid inputs.lf more than one number has the same
  * frequency,then choose the smallest nuinber
  */
-//Todo
+
 public class MeanAndMode {
+    public static void main(String[] args) {
+
+    }
 }
