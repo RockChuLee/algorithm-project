@@ -65,7 +65,31 @@ public class IsIPValidity {
         // to find matching between given IP address
         // and regular expression.
         Matcher m = p.matcher(addressIP);
+        return m.matches() ? "VALID" : "INVALID";
+    }
 
-        return "";
+    public String validateIPv4(String IP) {
+        String[] nums = IP.split("\\.", -1);
+        for (String x : nums) {
+            // Validate integer in range (0, 255):
+            // 1. length of chunk is between 1 and 3
+            if (x.length() == 0 || x.length() > 3) return "INVALID";
+            // 2. no extra leading zeros
+            if (x.charAt(0) == '0' && x.length() != 1) return "INVALID";
+            // 3. only digits are allowed
+            for (char ch : x.toCharArray()) {
+                if (! Character.isDigit(ch)) return "INVALID";
+            }
+            // 4. less than 255
+            if (Integer.parseInt(x) > 255) return "INVALID";
+        }
+        return "VALID";
+    }
+
+    public String validIPAddress(String IP) {
+        String chunkIPv4 = "([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])";
+        Pattern pattenIPv4 =
+                Pattern.compile("^(" + chunkIPv4 + "\\.){3}" + chunkIPv4 + "$");
+        return (pattenIPv4.matcher(IP).matches()) ? "VALID" : "INVALID";
     }
 }

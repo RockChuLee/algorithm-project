@@ -9,7 +9,7 @@ import java.util.Scanner;
  * <p>
  * Input
  * The first line of the input consists of an integer - days_size representing the number of birthdays celebrations(N).
- * The second line of the input consists of N space-sparated integers - days, representing the birthdays' celebrations
+ * The second line of the input consists of N space-separate integers - days, representing the birthdays' celebrations
  * in a month.
  * <p>
  * Output
@@ -30,18 +30,13 @@ import java.util.Scanner;
  * There are 5 numbers in this array. 4 has occurred once which is odd, so it meets the criteria, 8 doesn't as it has
  * occurred twice, 2and 9 meet the criteria of occurring an odd number of times. So.the output is 3.
  */
-public class Birthday {
+public class BirthdayCount {
     public static int numberOfDays(int[] days) {
         int answer = 0;
         //write your code here
         HashMap<Integer, Integer> daysCount = new HashMap<>();
         for (int i = 0; i < days.length; i++) {
-            if (daysCount.containsKey(days[i])) {
-                Integer count = daysCount.get(days[i]);
-                daysCount.put(days[i], ++count);
-            } else {
-                daysCount.put(days[i], 1);
-            }
+            daysCount.put(days[i], daysCount.getOrDefault(days[i], 0) + 1);
         }
         for (Integer day : daysCount.values()) {
             if (day % 2 != 0)
@@ -59,5 +54,6 @@ public class Birthday {
             days[idx] = in.nextInt();
         }
         int result = numberOfDays(days);
+        System.out.println(result);
     }
 }

@@ -20,5 +20,5 @@ package com.nyu.oa.csico;
  * 852
  * 963
  */
-public class rotate90 {
+public class RotateMatrix90Degrees {
 }

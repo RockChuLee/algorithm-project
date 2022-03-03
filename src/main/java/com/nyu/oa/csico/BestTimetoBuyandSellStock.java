@@ -1,4 +1,4 @@
-package com.nyu.datastructure.array;
+package com.nyu.oa.csico;
 
 import java.util.Arrays;
 import java.util.HashMap;
