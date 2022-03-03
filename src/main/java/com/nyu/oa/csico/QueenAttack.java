@@ -36,5 +36,6 @@ package com.nyu.oa.csico;
  *     output:
  *     No
 */
+//Todo
 public class QueenAttack {
 }
