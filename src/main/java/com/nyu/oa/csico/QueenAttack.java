@@ -1,7 +1,7 @@
 package com.nyu.oa.csico;
 
 /**
- *     In the game of chess, the queen can attack an opponent if the piece is located in the same row,samecolumn, or same diagonal.
+ *     In the game of chess, the queen can attack an opponent if the piece is located in the same row,same column, or same diagonal.
  *
  *     Write a program that takes the position of the queen and position of the opponent plece on an empty chessboard and determine if the queen may attack the piece.
  *
@@ -36,6 +36,36 @@ package com.nyu.oa.csico;
  *     output:
  *     No
 */
-//Todo
 public class QueenAttack {
+    static boolean canQueenAttack(int qR, int qC,
+                                  int oR, int oC)
+    {
+        // If queen and the opponent
+        // are in the same row
+        if (qR == oR)
+            return true;
+
+        // If queen and the opponent
+        // are in the same column
+        if (qC == oC)
+            return true;
+
+        // If queen can attack diagonally
+        if (Math.abs(qR - oR) == Math.abs(qC - oC))
+            return true;
+
+        // Opponent is safe
+        return false;
+    }
+
+    // Driver code
+    public static void main(String[] args)
+    {
+        int qR = 4, qC = 5;
+        int oR = 6, oC = 7;
+        if (canQueenAttack(qR, qC, oR, oC))
+            System.out.println("Yes");
+        else
+            System.out.println("No");
+    }
 }
