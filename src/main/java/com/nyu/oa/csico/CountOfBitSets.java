@@ -15,11 +15,11 @@ package com.nyu.oa.csico;
  * The binary of 18 is 10010.We calculate the number of 1's from the binary form, which is the bit set of that number.
  * The number of 1's in the binary form is 2.So,the output is 2.
  */
-public class NumberofBinary {
+public class CountOfBitSets {
     public static void main(String[] args) {
         int number = 18;
-        String s = Integer.toBinaryString(number);
         int result = 0;
+        String s = Integer.toBinaryString(number);
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '1') {
                 result++;
