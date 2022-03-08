@@ -1,5 +1,10 @@
 package com.nyu.algorithm.sort;
 
+
+/**
+ * 时间复杂度：O(nlog(n))
+ * 空间复杂度：O(n)
+ */
 public class Merge {
     private static Comparable[] aux; // 归并所需的辅助数组
 

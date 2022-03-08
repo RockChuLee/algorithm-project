@@ -2,6 +2,10 @@ package com.nyu.algorithm.sort;
 
 import com.nyu.util.std.StdRandom;
 
+/**
+ * 时间复杂度：O(nlog(n))
+ * 空间复杂度：O(log(n))
+ */
 public class Quick extends Example {
 
     public static void sort(Comparable[] a) {

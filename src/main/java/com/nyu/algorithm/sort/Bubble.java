@@ -4,12 +4,12 @@ package com.nyu.algorithm.sort;
  * 时间复杂度：O(n^2)
  * 空间复杂度：O(1)
  */
-public class Insertion {
+public class Bubble {
     public static void sort(Comparable[] a) {
         int N = a.length;
-        for (int i = 1; i < N; i++) {
-            for (int j = i; j > 0 && less(a[j], a[j - 1]); j--) {
-                exch(a, j, j - 1);
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N - i - 1 && less(a[j + 1], a[j]); j++) {
+                exch(a, j, j + 1);
             }
         }
     }
