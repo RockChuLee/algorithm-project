@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly;
+package com.nyu.leetcode.weekly1;
 
 import java.util.HashSet;
 

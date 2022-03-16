@@ -1,8 +1,6 @@
-package com.nyu.leetcode.weekly;
+package com.nyu.leetcode.weekly1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 public class FindKDistantIndices {

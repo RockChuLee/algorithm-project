@@ -1,7 +1,4 @@
-package com.nyu.leetcode.weekly;
-
-import java.security.Key;
-import java.util.Arrays;
+package com.nyu.leetcode.weekly1;
 
 public class MaximumTop {
     public static int maximumTop(int[] nums, int k) {
