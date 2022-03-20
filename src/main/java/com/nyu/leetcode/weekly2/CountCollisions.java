@@ -1,7 +1,5 @@
 package com.nyu.leetcode.weekly2;
 
-import com.nyu.util.std.StdOut;
-
 public class CountCollisions {
     public static int countCollisions(String directions) {
         char[] s = directions.toCharArray();
@@ -9,12 +7,10 @@ public class CountCollisions {
         int count = 0;
         while (i < n) {
             int start = i;
-
             while (i < n - 1 && s[i] == s[i + 1]) { // 找到一段连续的没有被推动的骨牌
                 i++;
             }
             char left = i < n ? s[i] : 'L';
-
             int j = i + 1;
             while (j < n - 1 && s[j] == s[j + 1]) { // 找到一段连续的没有被推动的骨牌
                 j++;
@@ -36,7 +32,27 @@ public class CountCollisions {
         return count;
     }
 
+//    public static int countCollisions(String directions) {
+//        int n = directions.length();
+//        char[] chs = directions.toCharArray();
+//        int i = 0, j = n - 1;
+//        while(i < n && chs[i] == 'L') {
+//            ++i;
+//        }
+//        while(j >= 0 && chs[j] == 'R') {
+//            --j;
+//        }
+//        int countS = 0;
+//        for(int k = i; k <= j; k++) {
+//            if(chs[k] == 'S') {
+//                ++countS;
+//            }
+//        }
+//        return j - i + 1 - countS;
+//    }
+
     public static void main(String[] args) {
-        System.out.println(countCollisions("RSLLRSSL"));
+        System.out.println(countCollisions("SSRSSRLLRSLLRSRSSRLRRRRLLRRLSSRR"));
+//        System.out.println("012345".substring(0,1));
     }
 }
