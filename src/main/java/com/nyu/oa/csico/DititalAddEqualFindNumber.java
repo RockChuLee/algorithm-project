@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class DititalAddEqualFindNumber {
 
-    //Todo
+
     static List<Integer> flags = Arrays.asList(0, 1, 10, 100, 1000);
 
     // Function that returns the smallest number

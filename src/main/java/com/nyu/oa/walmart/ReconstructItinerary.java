@@ -3,7 +3,7 @@ package com.nyu.oa.walmart;
 import java.util.*;
 
 //https://leetcode-cn.com/problems/reconstruct-itinerary/
-class Solution {
+public class ReconstructItinerary {
     Map<String, PriorityQueue<String>> map = new HashMap<String, PriorityQueue<String>>();
     List<String> itinerary = new LinkedList<String>();
 
