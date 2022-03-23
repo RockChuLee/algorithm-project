@@ -1,6 +1,8 @@
 package com.nyu.oa.twitter;
 
 
+import java.util.List;
+
 /**
  * A purchasing manager must buy a specific number of units of an item to replenish the warehouse.
  * The primary supplier has a list of containers, each with a number of units. The manager must buy
@@ -19,4 +21,15 @@ package com.nyu.oa.twitter;
  */
 
 public class RestockingtheWarehouse {
+    public static int restock(List<Integer> itemCount, int target) {
+        // Write your code here
+        int sum = 0;
+        for (int i = 0; i < itemCount.size(); i++) {
+            sum += itemCount.get(i);
+            if(sum>=target){
+                break;
+            }
+        }
+        return Math.abs( sum - target);
+    }
 }
