@@ -2,7 +2,7 @@ package com.nyu.oa.csico;
 
 import java.util.Stack;
 
-//Todo
+
 public class FormatString {
     public static void main(String[] args) {
         String s = "(ab(c){2}){2}";

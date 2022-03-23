@@ -10,6 +10,6 @@ package com.nyu.oa.csico;
  * B W
  * The topmost left square is always 'W'.
  */
-//Todo
+
 public class PrintChess {
 }
