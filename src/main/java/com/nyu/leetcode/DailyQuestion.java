@@ -1,35 +1,26 @@
 package com.nyu.leetcode;
 
-import java.util.Stack;
+import java.util.Arrays;
 
 public class DailyQuestion {
-    public  int calPoints(String[] ops) {
-        int score = 0;
-        Stack<Integer> stack = new Stack<>();
-        for (String operate : ops) {
-            if (operate.equals("+")) {
-                int peekScore = stack.pop();
-                int curScore = stack.pop();
-                stack.push(curScore);
-                stack.push(peekScore);
-                stack.push(peekScore + curScore);
-            } else if (operate.equals("D")) { // Double得分
-                stack.push(stack.peek() * 2);
-            } else if (operate.equals("C")) { // 失分
-                stack.pop();
-            } else {    // 得分
-                stack.push(Integer.parseInt(operate));
-            }
+    public int[] missingRolls(int[] rolls, int mean, int n) {
+        int sum = 0;
+        for (int i = 0; i < rolls.length; i++) {
+            sum += rolls[i];
         }
-        while (stack.size()!=0) {
-            score += stack.pop();
+        sum = (rolls.length + n) * mean - sum;
+        int[] result = new int[n];
+        if (sum > n * 6) {
+            return result;
         }
-
-        return score;
+        for (int j = 1; j <= sum; j++) {
+            result[j % n]++;
+        }
+        return result;
     }
 
     public static void main(String[] args) {
         DailyQuestion dailyQuestion = new DailyQuestion();
-        dailyQuestion.calPoints(new String[]{"5","2","C","D","+"});
+        System.out.println(Arrays.toString(dailyQuestion.missingRolls(new int[]{3, 2, 4, 3}, 4, 2)));
     }
 }
