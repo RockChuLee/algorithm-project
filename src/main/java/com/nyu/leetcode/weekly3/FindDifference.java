@@ -1,29 +1,21 @@
 package com.nyu.leetcode.weekly3;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class FindDifference {
     public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
-        int[] a1 = Arrays.stream(nums1).distinct().toArray();
-        int[] a2 = Arrays.stream(nums2).distinct().toArray();
-
-        List<Integer> result1 = new ArrayList<>();
-        List<Integer> result2 = new ArrayList<>();
-        for (int i = 0; i < a1.length; i++) {
-            if (!result1.contains(a1[i])) {
-                result1.add(a1[i]);
-            }
+        Set<Integer> result1 = new HashSet<>();
+        Set<Integer> result2 = new HashSet<>();
+        for (int i : nums1) {
+            result1.add(i);
         }
-
-        for (int i = 0; i < a2.length; i++) {
-            if (result1.contains(a2[i])) {
-                result1.remove(result1.indexOf(a2[i]));
-            } else {
-                result2.add(a2[i]);
-            }
+        for (int j : nums2) {
+            result1.remove(j);
+            result2.add(j);
         }
-        return Arrays.asList(result1, result2);
+        for (int k : nums1) {
+            result2.remove(k);
+        }
+        return Arrays.asList(new ArrayList<>(result1), new ArrayList<>(result2));
     }
 }

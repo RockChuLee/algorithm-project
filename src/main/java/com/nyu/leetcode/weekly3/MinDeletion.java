@@ -2,26 +2,14 @@ package com.nyu.leetcode.weekly3;
 
 public class MinDeletion {
     public static int minDeletion(int[] nums) {
-        int sum = 0;
-        boolean index = nums.length % 2 == 0;
-        int i = 0;
-        while (i < nums.length-1) {
-            int num = nums[i];
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[j] == num) {
-                    sum++;
-                    i = j + 1;
-                    index = !index;
-                } else {
-                    i = j + 1;
-                    break;
-                }
-            }
+        int n = nums.length;
+        int ans = 0;
+        for (int i = 0; i + 1 < n; i++) {
+            if (nums[i] == nums[i + 1]) ans++;
+            else i++;
         }
-        if (!index) {
-            sum += 1;
-        }
-        return sum;
+        if ((n - ans) % 2 !=0) ans++;
+        return ans;
     }
 
     public static void main(String[] args) {
