@@ -1,4 +1,4 @@
-package com.nyu.algorithm.bfs;
+package com.nyu.algorithm.bfs_dfs;
 
 import java.util.*;
 
