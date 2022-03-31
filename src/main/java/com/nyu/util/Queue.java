@@ -112,7 +112,7 @@ public class Queue<Item> implements Iterable<Item> {
      * @return the item on this queue that was least recently added
      * @throws NoSuchElementException if this queue is empty
      */
-    public Item dequeue() {
+    public Item  dequeue() {
         if (isEmpty()) throw new NoSuchElementException("Queue underflow");
         Item item = first.item;
         first = first.next;

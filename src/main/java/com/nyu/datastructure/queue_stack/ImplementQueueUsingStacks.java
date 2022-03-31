@@ -2,7 +2,7 @@ package com.nyu.datastructure.queue_stack;
 
 import java.util.Stack;
 
-public class ImplementQueueusingStacks {
+public class ImplementQueueUsingStacks {
     private Stack<Integer> stack1;
     private Stack<Integer> stack2;
     private int front;
@@ -10,7 +10,7 @@ public class ImplementQueueusingStacks {
     /**
      * Initialize your data structure here.
      */
-    public ImplementQueueusingStacks() {
+    public ImplementQueueUsingStacks() {
         stack1 = new Stack<>();
         stack2 = new Stack<>();
     }

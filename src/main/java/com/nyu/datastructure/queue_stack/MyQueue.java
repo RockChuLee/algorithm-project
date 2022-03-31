@@ -1,5 +1,7 @@
 package com.nyu.datastructure.queue_stack;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 public class MyQueue {
@@ -50,5 +52,9 @@ public class MyQueue {
      */
     public boolean empty() {
         return stack1.isEmpty() && stack2.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        Queue<Integer> queue = new ArrayDeque<>();
     }
 }

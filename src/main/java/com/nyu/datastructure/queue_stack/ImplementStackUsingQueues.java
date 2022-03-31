@@ -5,13 +5,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //https://leetcode-cn.com/problems/implement-stack-using-queues/
-public class ImplementStackusingQueues {
+public class ImplementStackUsingQueues {
 
     Queue<Integer> queue1;
     Queue<Integer> queue2;
 
     /** Initialize your data structure here. */
-    public ImplementStackusingQueues() {
+    public ImplementStackUsingQueues() {
         queue1 = new LinkedList<Integer>();
         queue2 = new LinkedList<Integer>();
     }
