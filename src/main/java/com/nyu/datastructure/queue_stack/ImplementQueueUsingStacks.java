@@ -18,14 +18,13 @@ public class ImplementQueueUsingStacks {
     /**
      * Push element x to the back of queue.
      */
-    public void push(int x) {
+    public void enqueue(int x) {
         if (stack1.isEmpty())
             front = x;
         stack1.push(x);
-
     }
 
-    public int pop() {
+    public int dequeue() {
         if (stack2.isEmpty()) {
             while (!stack1.isEmpty()) {
                 stack2.push(stack1.pop());
@@ -42,7 +41,6 @@ public class ImplementQueueUsingStacks {
             return stack2.peek();
         }
         return front;
-
     }
 
     /**
