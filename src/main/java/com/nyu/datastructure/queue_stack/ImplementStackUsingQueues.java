@@ -1,6 +1,8 @@
 package com.nyu.datastructure.queue_stack;
 
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -12,8 +14,8 @@ public class ImplementStackUsingQueues {
 
     /** Initialize your data structure here. */
     public ImplementStackUsingQueues() {
-        queue1 = new LinkedList<Integer>();
-        queue2 = new LinkedList<Integer>();
+        queue1 = new ArrayDeque<>();
+        queue2 = new ArrayDeque<>();
     }
 
     /** Push element x onto stack. */
