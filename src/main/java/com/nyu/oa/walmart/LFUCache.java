@@ -65,34 +65,34 @@ class LFUCache {
             key_table.put(key, cache);
         }
     }
-}
 
-class Node implements Comparable<Node> {
-    int cnt, time, key, value;
+    class Node implements Comparable<Node> {
+        int cnt, time, key, value;
 
-    Node(int cnt, int time, int key, int value) {
-        this.cnt = cnt;
-        this.time = time;
-        this.key = key;
-        this.value = value;
-    }
-
-    public boolean equals(Object anObject) {
-        if (this == anObject) {
-            return true;
+        Node(int cnt, int time, int key, int value) {
+            this.cnt = cnt;
+            this.time = time;
+            this.key = key;
+            this.value = value;
         }
-        if (anObject instanceof Node) {
-            Node rhs = (Node) anObject;
-            return this.cnt == rhs.cnt && this.time == rhs.time;
+
+        public boolean equals(Object anObject) {
+            if (this == anObject) {
+                return true;
+            }
+            if (anObject instanceof Node) {
+                Node rhs = (Node) anObject;
+                return this.cnt == rhs.cnt && this.time == rhs.time;
+            }
+            return false;
         }
-        return false;
-    }
 
-    public int compareTo(Node rhs) {
-        return cnt == rhs.cnt ? time - rhs.time : cnt - rhs.cnt;
-    }
+        public int compareTo(Node rhs) {
+            return cnt == rhs.cnt ? time - rhs.time : cnt - rhs.cnt;
+        }
 
-    public int hashCode() {
-        return cnt * 1000000007 + time;
+        public int hashCode() {
+            return cnt * 1000000007 + time;
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.nyu.oa.walmart;
 
+import java.util.PriorityQueue;
+
 //https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
 public class KthLargestElementinanArray {
     public int findKthLargest(int[] nums, int k) {
@@ -13,23 +15,23 @@ public class KthLargestElementinanArray {
         return nums[0];
     }
 
-    public void buildMaxHeap(int[] arr, int heapSize) {
+    public void buildMaxHeap(int[] nums, int heapSize) {
         for (int i = heapSize / 2; i >= 0; --i) {
-            maxHeapify(arr, i, heapSize);
+            maxHeapify(nums, i, heapSize);
         }
     }
 
-    public void maxHeapify(int[] arr, int index, int heapSize) {
+    public void maxHeapify(int[] nums, int index, int heapSize) {
         int l = index * 2 + 1, r = index * 2 + 2, largest = index;
-        if (l < heapSize && arr[l] > arr[largest]) {
+        if (l < heapSize && nums[l] > nums[largest]) {
             largest = l;
         }
-        if (r < heapSize && arr[r] > arr[largest]) {
+        if (r < heapSize && nums[r] > nums[largest]) {
             largest = r;
         }
         if (largest != index) {
-            swap(arr, index, largest);
-            maxHeapify(arr, largest, heapSize);
+            swap(nums, index, largest);
+            maxHeapify(nums, largest, heapSize);
         }
     }
 
@@ -37,5 +39,25 @@ public class KthLargestElementinanArray {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+    }
+
+    public int findKthLargest1(int[] nums, int k) {
+        // init heap 'the smallest element first'
+        PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
+
+        // keep k largest elements in the heap
+        for (int n : nums) {
+            heap.add(n);
+            if (heap.size() > k)
+                heap.poll();
+        }
+
+        // output
+        return heap.poll();
+    }
+
+    public static void main(String[] args) {
+        KthLargestElementinanArray kthLargestElementinanArray = new KthLargestElementinanArray();
+        System.out.println(kthLargestElementinanArray.findKthLargest1(new int[]{1, 3, 4, 2, 9, 8, 6}, 2));
     }
 }
