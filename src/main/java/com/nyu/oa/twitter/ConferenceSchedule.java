@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 //https://leetcode-cn.com/problems/maximum-number-of-events-that-can-be-attended/solution/
-//TODO
+
 public class ConferenceSchedule {
     public int maxEvents(int[][] events) {
         int n = events.length;

@@ -1,7 +1,6 @@
 package com.nyu.oa.twitter;
 
 //https://leetcode-cn.com/problems/palindromic-substrings/
-//Todo
 public class SubPalindrome {
     public int countSubstrings(String s) {
         int n = s.length(), ans = 0;
