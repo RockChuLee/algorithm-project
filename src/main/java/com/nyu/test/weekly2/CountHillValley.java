@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly2;
+package com.nyu.test.weekly2;
 
 public class CountHillValley {
 //    public static int countHillValley(int[] nums) {

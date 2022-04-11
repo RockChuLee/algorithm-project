@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly3;
+package com.nyu.test.weekly3;
 
 public class MinDeletion {
     public static int minDeletion(int[] nums) {

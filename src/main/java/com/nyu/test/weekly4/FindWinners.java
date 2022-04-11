@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly4;
+package com.nyu.test.weekly4;
 
 import java.util.*;
 

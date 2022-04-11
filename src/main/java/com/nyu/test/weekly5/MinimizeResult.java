@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly5;
+package com.nyu.test.weekly5;
 
 public class MinimizeResult {
     public static String minimizeResult(String expression) {

@@ -1,7 +1,4 @@
-package com.nyu.leetcode.weekly3;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.nyu.test.weekly3;
 
 public class KkthPalindrome {
     public long[] kthPalindrome(int[] queries, int intLength) {

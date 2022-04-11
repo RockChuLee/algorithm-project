@@ -1,8 +1,7 @@
-package com.nyu.leetcode.weekly4;
+package com.nyu.test.weekly4;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
 public class MaximumCandies {

@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly1;
+package com.nyu.test.weekly1;
 
 import java.util.ArrayList;
 import java.util.List;

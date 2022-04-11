@@ -6,36 +6,88 @@ import java.util.Map;
 //https://leetcode-cn.com/problems/lru-cache/
 public class LRUCache {
 
-    class DLinkedNode {
-        int key;
-        int value;
-        DLinkedNode prev;
-        DLinkedNode next;
+    private Map<Integer, DLLNode> cache = new HashMap<>();
+    private int size;
+    private int capacity;
+    private DLLNode head, tail;
+
+    public LRUCache(int capacity) {
+        this.size = 0;
+        this.capacity = capacity;
+        head = new DLLNode();
+        tail = new DLLNode();
+        head.next = tail;
+        tail.prev = head;
     }
 
-    private void addNode(DLinkedNode node) {
+    public int get(int key) {
+        DLLNode node = cache.get(key);
+        if (node == null) {
+            return -1;
+        }
+        // move the accessed node to the head;
+        updateNode(node);
+        return node.value;
+    }
+
+    public void put(int key, int value) {
+        DLLNode node = cache.get(key);
+
+        if (node == null) {
+            ++size;
+
+            if (size > capacity) {
+                // pop the tail
+                DLLNode tail = popTail();
+                cache.remove(tail.key);
+                --size;
+            }
+            DLLNode newNode = new DLLNode();
+            newNode.key = key;
+            newNode.value = value;
+
+            cache.put(key, newNode);
+            addNode(newNode);
+
+
+        } else {
+            // update the value.
+            node.value = value;
+            updateNode(node);
+        }
+    }
+
+    class DLLNode {
+        int key;
+        int value;
+        DLLNode prev;
+        DLLNode next;
+    }
+
+    private void addNode(DLLNode node) {
         /**
          * Always add the new node right after head.
          */
-        node.prev = head;
-        node.next = head.next;
-
-        head.next.prev = node;
-        head.next = node;
+        DLLNode prevNode = head;
+        DLLNode nextNode = head.next;
+        node.next = nextNode;
+        node.prev = prevNode;
+        nextNode.prev = node;
+        prevNode.next = node;
     }
 
-    private void removeNode(DLinkedNode node) {
+    private void removeNode(DLLNode node) {
         /**
          * Remove an existing node from the linked list.
          */
-        DLinkedNode prev = node.prev;
-        DLinkedNode next = node.next;
+        DLLNode prevNode = node.prev;
+        DLLNode nextNode = node.next;
 
-        prev.next = next;
-        next.prev = prev;
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
     }
 
-    private void moveToHead(DLinkedNode node) {
+    private void updateNode(DLLNode node) {
         /**
          * Move certain node in between to the head.
          */
@@ -43,62 +95,13 @@ public class LRUCache {
         addNode(node);
     }
 
-    private DLinkedNode popTail() {
+    private DLLNode popTail() {
         /**
          * Pop the current tail.
          */
-        DLinkedNode res = tail.prev;
+        DLLNode res = tail.prev;
         removeNode(res);
         return res;
     }
 
-    private Map<Integer, DLinkedNode> cache = new HashMap<>();
-    private int size;
-    private int capacity;
-    private DLinkedNode head, tail;
-
-    public LRUCache(int capacity) {
-        this.size = 0;
-        this.capacity = capacity;
-        head = new DLinkedNode();
-        tail = new DLinkedNode();
-        head.next = tail;
-        tail.prev = head;
-    }
-
-    public int get(int key) {
-        DLinkedNode node = cache.get(key);
-        if (node == null) return -1;
-
-        // move the accessed node to the head;
-        moveToHead(node);
-
-        return node.value;
-    }
-
-    public void put(int key, int value) {
-        DLinkedNode node = cache.get(key);
-
-        if (node == null) {
-            DLinkedNode newNode = new DLinkedNode();
-            newNode.key = key;
-            newNode.value = value;
-
-            cache.put(key, newNode);
-            addNode(newNode);
-
-            ++size;
-
-            if (size > capacity) {
-                // pop the tail
-                DLinkedNode tail = popTail();
-                cache.remove(tail.key);
-                --size;
-            }
-        } else {
-            // update the value.
-            node.value = value;
-            moveToHead(node);
-        }
-    }
 }

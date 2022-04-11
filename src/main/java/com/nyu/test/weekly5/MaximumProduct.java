@@ -1,7 +1,6 @@
-package com.nyu.leetcode.weekly5;
+package com.nyu.test.weekly5;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class MaximumProduct {

@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly2;
+package com.nyu.test.weekly2;
 
 import java.util.TreeMap;
 

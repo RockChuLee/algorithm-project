@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly4;
+package com.nyu.test.weekly4;
 
 public class ConvertTime {
     public static int convertTime(String current, String correct) {

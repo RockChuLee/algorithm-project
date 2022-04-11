@@ -1,4 +1,4 @@
-package com.nyu.leetcode.weekly1;
+package com.nyu.test.weekly1;
 
 public class MaximumTop {
     public static int maximumTop(int[] nums, int k) {
