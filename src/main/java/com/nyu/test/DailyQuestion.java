@@ -7,58 +7,47 @@ class Solution {
     int[][] heights;
     int m, n;
 
-    public List<List<Integer>> pacificAtlantic(int[][] heights) {
-        this.heights = heights;
-        this.m = heights.length;
-        this.n = heights[0].length;
-        boolean[][] pacific = new boolean[m][n];
-        boolean[][] atlantic = new boolean[m][n];
-        for (int i = 0; i < m; i++) {
-            bfs(i, 0, pacific);
-        }
-        for (int j = 1; j < n; j++) {
-            bfs(0, j, pacific);
-        }
-        for (int i = 0; i < m; i++) {
-            bfs(i, n - 1, atlantic);
-        }
-        for (int j = 0; j < n - 1; j++) {
-            bfs(m - 1, j, atlantic);
-        }
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (pacific[i][j] && atlantic[i][j]) {
-                    List<Integer> cell = new ArrayList<Integer>();
-                    cell.add(i);
-                    cell.add(j);
-                    result.add(cell);
+    public static int bfs(int[] nums, int k, int p) {
+        int length = nums.length;
+        StringBuilder stringBuilder;
+        HashSet<String> result = new HashSet<>();
+        for (int i = 0; i < length; i++) {
+            stringBuilder = new StringBuilder();
+            int temp = nums[i] % p == 0 ? 1 : 0;
+            stringBuilder.append(nums[i]).append(",");
+            System.out.println(stringBuilder.toString());
+            System.out.println(result.add(stringBuilder.toString()));
+            for (int j = i + 1; j < length; j++) {
+                if (nums[j] % p == 0) {
+                    temp++;
                 }
+                if (temp > k) {
+                    break;
+                }
+                stringBuilder.append(nums[j]).append(",");
+                System.out.println(stringBuilder.toString());
+                System.out.println(result.add(stringBuilder.toString()));
             }
         }
-        return result;
+        return result.size();
     }
 
-    public void bfs(int row, int col, boolean[][] ocean) {
-        if (ocean[row][col]) {
-            return;
-        }
-        ocean[row][col] = true;
-        Queue<int[]> queue = new ArrayDeque<int[]>();
-        queue.offer(new int[]{row, col});
-        while (!queue.isEmpty()) {
-            int[] cell = queue.poll();
-            for (int[] dir : dirs) {
-                int newRow = cell[0] + dir[0], newCol = cell[1] + dir[1];
-                if (newRow >= 0 && newRow < m && newCol >= 0 && newCol < n && heights[newRow][newCol] >= heights[cell[0]][cell[1]] && !ocean[newRow][newCol]) {
-                    ocean[newRow][newCol] = true;
-                    queue.offer(new int[]{newRow, newCol});
+    public static int countDistinct(int[] nums, int k, int p) {
+        HashSet<String> set = new HashSet<>();
+        for (int i = 0, count = 0; i < nums.length; i++, count = 0) {
+            ArrayList<Integer> list = new ArrayList<>();
+            for (int j = i; j < nums.length; j++) {
+                list.add(nums[j]);
+                if ((count += nums[j] % p > 0 ? 0 : 1) <= k) {
+                    System.out.println(String.valueOf(list));
+                    set.add(String.valueOf(list));
                 }
             }
         }
+        return set.size();
     }
 
     public static void main(String[] args) {
-        System.out.println(3 ^ 4 ^ 5 ^ 3 ^ 4 ^ 5 ^ 3 ^ 4 ^ 5);
+        System.out.println(bfs(new int[]{5, 11, 17, 13, 16, 9, 4, 9, 20}, 7, 1));
     }
 }
