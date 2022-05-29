@@ -1,67 +1,57 @@
 package com.nyu.test;
 
+import com.nyu.util.In;
+
+import java.text.DecimalFormat;
 import java.util.*;
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode() {
-    }
-
-    TreeNode(int val) {
-        this.val = val;
-    }
-
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-}
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 class Solution {
-    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
-        PriorityQueue<Integer> heap = new PriorityQueue<>();
-        List<Integer> result = new ArrayList<>();
-        dfs(root1, heap);
-        dfs(root2, heap);
 
-        while (heap.peek()!=null) {
-            result.add(heap.poll());
+    public static int totalSteps(int[] nums) {
+//        ArrayList<Integer> temp = new ArrayList<>();
+        if (nums.length == 0 || nums.length == 1) {
+            return 0;
         }
+        ArrayList<Integer> num = (ArrayList<Integer>) Arrays.stream(nums).boxed().collect(Collectors.toList());
+        boolean flag = true;
+        boolean first = true;
+        int result = 0;
+        int i = 1;
+        int size = num.size();
+        int temp = num.get(0);
+        while (flag) {
+            if (first) {
+                size = num.size();
+                temp = num.get(0);
+            }
+            if(size == 1){
+                return result;
+            }
+            first = false;
+            if (temp > num.get(i)) {
+                temp = num.get(i);
+                num.remove(i);
+            } else {
+                temp = num.get(i);
+                i++;
+            }
 
+            if (i == num.size()) {
+                if (size == num.size()) {
+                    flag = false;
+                }
+                i = 1;
+                result++;
+                first = true;
+            }
+        }
         return result;
     }
 
-    private void dfs(TreeNode root, PriorityQueue<Integer> heap) {
-        if (root != null) {
-            heap.offer(root.val);
-        }else {
-            return;
-        }
-        if (root.left != null) {
-            dfs(root.left, heap);
-
-        }
-        if (root.right != null) {
-            dfs(root.right, heap);
-
-        }
-    }
-
     public static void main(String[] args) {
-        PriorityQueue<Integer> heap = new PriorityQueue<>();
-        heap.offer(3);
-        heap.offer(1);
-        heap.offer(2);
-        heap.offer(6);
-        heap.offer(4);
-        System.out.println(heap.poll());
-        System.out.println(heap.poll());
-        System.out.println(heap.poll());
-        System.out.println(heap.poll());
-        System.out.println(heap.poll());
+        System.out.println(totalSteps(new int[]{5, 11, 7, 8, 11}));
     }
 }
