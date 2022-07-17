@@ -11,7 +11,7 @@ public class SmallestTrimmedNumbers {
         for (int p = 0; p < queries.length; p++) {
             int[] q = queries[p];
             ArrayList<Integer> idx = new ArrayList<>(Arrays.asList(IntStream.range(0, nums.length).boxed().toArray(Integer[]::new)));
-            Collections.sort(idx, (i, j) -> nums[i].substring(m - q[1]).compareTo(nums[j].substring(m - q[1]))); // 稳定排序
+            idx.sort(Comparator.comparing(i -> nums[i].substring(m - q[1]))); // 稳定排序
             ans[p] = idx.get(q[0] - 1);
         }
         return ans;
