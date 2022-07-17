@@ -1,5 +1,7 @@
 package com.nyu.datastructure.linkedlist;
 
+import com.nyu.datastructure.linkedlist.util.ListNode;
+
 //https://leetcode-cn.com/problems/remove-linked-list-elements/solution/
 public class RemoveLinkedListElements {
 

@@ -1,5 +1,7 @@
 package com.nyu.datastructure.linkedlist;
 
+import com.nyu.datastructure.linkedlist.util.ListNode;
+
 // https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/he-bing-liang-ge-you-xu-lian-biao-by-leetcode-solu/
 public class MergeTwoSortedLists {
 

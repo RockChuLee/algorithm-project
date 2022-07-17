@@ -1,9 +1,11 @@
 package com.nyu.datastructure.linkedlist;
 
+import com.nyu.datastructure.linkedlist.util.ListNode;
+
 //https://leetcode-cn.com/problems/reverse-linked-list/
 public class ReverseLinkedList {
 
-    //recursion
+    // Recursion
     // Time Complexity :
     // Space Complexity :
     public ListNode reverseList(ListNode head) {
@@ -16,7 +18,7 @@ public class ReverseLinkedList {
         return p;
     }
 
-    //iterator
+    // Iterator
     // Time Complexity :
     // Space Complexity :
     public ListNode reverseList1(ListNode head) {

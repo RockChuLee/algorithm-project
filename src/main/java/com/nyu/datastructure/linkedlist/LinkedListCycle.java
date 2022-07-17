@@ -1,5 +1,7 @@
 package com.nyu.datastructure.linkedlist;
 
+import com.nyu.datastructure.linkedlist.util.ListNode;
+
 import java.util.HashSet;
 import java.util.Set;
 
