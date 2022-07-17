@@ -5,40 +5,32 @@ import java.util.Map;
 
 public class MaximumSum {
     public static int maximumSum(int[] nums) {
-        int max = -1;
+        int n = nums.length;
         HashMap<Integer, int[]> map = new HashMap<>();
-
-        for (int num : nums) {
-            int sum = calculate(num);
-            int a = -1;
-            int b = -1;
-            if (map.get(sum) != null) {
-                int[] integers = map.get(sum);
-                a = integers[0];
-                b = integers[1];
-                if (a > b) {
-                    if (b < num) {
-                        b = num;
-                    }
-                } else {
-                    if (a < num) {
-                        a = num;
-                    }
-                }
-                map.put(sum, new int[]{a, b});
-            }else {
-                map.put(sum, new int[]{num, b});
+        for (int i = 0; i < n; i++) {
+            int num = nums[i], sum = 0;
+            while (num != 0) {
+                sum += num % 10;
+                num /= 10;
             }
-        }
-
-        for (Map.Entry<Integer, int[]> entry : map.entrySet()) {
-            int[] value = entry.getValue();
-            if (value[0] != -1 && value[1] != -1) {
-                max = Math.max(max, value[0] + value[1]);
+            // arr[0]最大值，arr[1]次大值
+            int[] arr = map.getOrDefault(sum, new int[2]);
+            if (nums[i] >= arr[0]) {
+                arr[1] = arr[0];
+                arr[0] = nums[i];
+            } else if (nums[i] > arr[1]) {
+                arr[1] = nums[i];
             }
+            map.put(sum, arr);
         }
-
-        return max;
+        int res = -1;
+        for (int key : map.keySet()) {
+            int[] arr = map.get(key);
+            // 跳过数位和只有一个的情况
+            if (arr[1] == 0) continue;
+            res = Math.max(res, arr[0] + arr[1]);
+        }
+        return res;
     }
 
     public static int calculate(int num) {
