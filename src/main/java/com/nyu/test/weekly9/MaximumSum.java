@@ -33,7 +33,7 @@ public class MaximumSum {
 
         for (Map.Entry<Integer, int[]> entry : map.entrySet()) {
             int[] value = entry.getValue();
-            if (value[0]!=-1&&value[1]!=-1) {
+            if (value[0] != -1 && value[1] != -1) {
                 max = Math.max(max, value[0] + value[1]);
             }
         }
@@ -45,7 +45,7 @@ public class MaximumSum {
         int sum = 0;
         while (num >= 10) {
             sum += num % 10;
-            num = (num - num % 10) / 10;
+            num /= 10;
         }
         sum += num;
         return sum;

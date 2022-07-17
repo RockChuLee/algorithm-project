@@ -1,20 +1,25 @@
 package com.nyu.test.weekly9;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class MinOperations {
     public static int minOperations(int[] nums, int[] numsDivide) {
-        Arrays.sort(nums);
-        Set<Integer> set = Arrays.stream(numsDivide).boxed().collect(Collectors.toSet());
-
-        return 0;
+        int g = 0;
+        for (int x : numsDivide) g = gcd(g, x);
+        int min = Integer.MAX_VALUE;
+        for (int num : nums) if (g % num == 0) min = Math.min(min, num);
+        if (min == Integer.MAX_VALUE) return -1;
+        int ans = 0;
+        for (int x : nums) if (x < min) ++ans;
+        return ans;
     }
 
+    public static int gcd(int a, int b) {
+        return a == 0 ? b : gcd(b % a, a);
+    }
+
+
     public static void main(String[] args) {
-        minOperations(new int[]{1, 2}, new int[]{1, 2,3,3});
+        minOperations(new int[]{1, 2}, new int[]{1, 2, 3, 3});
     }
 }
