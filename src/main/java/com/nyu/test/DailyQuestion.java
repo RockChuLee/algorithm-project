@@ -1,53 +1,25 @@
 package com.nyu.test;
 
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 class Solution {
-    public Node flatten(Node head) {
-        dfs(head);
-        return head;
-    }
-
-    public Node dfs(Node node) {
-        Node cur = node;
-        // 记录链表的最后一个节点
-        Node last = null;
-
-        while (cur != null) {
-            Node next = cur.next;
-            //  如果有子节点，那么首先处理子节点
-            if (cur.child != null) {
-                Node childLast = dfs(cur.child);
-
-                next = cur.next;
-                //  将 node 与 child 相连
-                cur.next = cur.child;
-                cur.child.prev = cur;
-
-                //  如果 next 不为空，就将 last 与 next 相连
-                if (next != null) {
-                    childLast.next = next;
-                    next.prev = childLast;
-                }
-
-                // 将 child 置为空
-                cur.child = null;
-                last = childLast;
-            } else {
-                last = cur;
-            }
-            cur = next;
+    public static char firstUniqChar(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for(int i = 0;i<s.length();i++){
+            map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);
         }
-        return last;
+        char ans = ' ';
+        for(char key : map.keySet()){
+            if(map.get(key)==1){
+                ans = key;
+                break;
+            }
+        }
+        List<Character> exist = new ArrayList<>();
+        return ans;
     }
 
-    class Node {
-        public int val;
-        public Node prev;
-        public Node next;
-        public Node child;
+    public static void main(String[] args) {
+        firstUniqChar("leetcode");
     }
 }
