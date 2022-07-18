@@ -6,22 +6,22 @@ import com.nyu.datastructure.linkedlist.util.ListNode;
 public class ReverseLinkedList {
 
     // Recursion
-    // Time Complexity :
-    // Space Complexity :
-    public ListNode reverseList(ListNode head) {
+    // Time Complexity : O(n)
+    // Space Complexity : O(n)
+    public ListNode recursion(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode p = reverseList(head.next);
+        ListNode p = recursion(head.next);
         head.next.next = head;
         head.next = null;
         return p;
     }
 
     // Iterator
-    // Time Complexity :
-    // Space Complexity :
-    public ListNode reverseList1(ListNode head) {
+    // Time Complexity : O(n)
+    // Space Complexity : O(1)
+    public ListNode iterator(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
         while (curr != null) {

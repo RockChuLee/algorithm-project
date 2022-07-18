@@ -15,9 +15,10 @@ public class Test {
         List<Integer> list = Arrays.asList(3, 2, 0, -4);
         ListNode head = initListNode(list);
 
-        System.out.println(reverseLinkedList.reverseList(head));
+        System.out.println(toListNodeString(reverseLinkedList.iterator(head)));
     }
 
+    // initial a linkedlist
     private static ListNode initListNode(List<Integer> list) {
         ListNode head = new ListNode();
         ListNode dummy = head;
@@ -26,6 +27,16 @@ public class Test {
             head.next = temp;
             head = temp;
         }
-        return dummy;
+        return dummy.next;
+    }
+
+    // print a linkedlist
+    private static String toListNodeString(ListNode head) {
+        StringBuilder stringBuilder = new StringBuilder();
+        while (head!= null) {
+            stringBuilder.append(head.val).append("->");
+            head = head.next;
+        }
+        return stringBuilder.substring(0,stringBuilder.length()-2);
     }
 }
