@@ -2,49 +2,35 @@ package com.nyu.test;
 
 import com.nyu.util.std.StdOut;
 
+import java.util.HashMap;
+
 class Solution {
-    static int[][] dirs = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-    static boolean[][] visited;
-    static int count = 0;
-
-    public static int movingCount(int m, int n, int k) {
-        if(m == 0|| n ==0){
-            return 0;
+    public int closestMeetingNode(int[] edges, int node1, int node2) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int ans = -1;
+        int step = 1;
+        while(node1!=-1){
+            if(map.containsKey(node1)){
+                break;
+            };
+            map.put(node1,step++);
+            node1 = edges[node1];
         }
-
-        visited = new boolean[m][n];
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                dfs(i,j,m,n,k,visited);
+        System.out.println(map);
+        int min = Integer.MAX_VALUE;
+        step = 0;
+        while(node2!=-1){
+            if(map.contains(node2)){
+                int max = Math.max(map.get(node2),step);
+                if(max<min){
+                    min = max;
+                    ans = node2;
+                }
             }
+            step++;
+            node2 = edges[node2];
         }
-        return count;
-    }
-
-    public static void dfs(int i, int j,int m, int n, int k, boolean[][] visited){
-        if(sum(i)+sum(j)<=k&&!visited[i][j]){
-            count++;
-        }else{
-            return;
-        }
-        visited[i][j] = true;
-
-        for (int[] dir : dirs) {
-            int newi = i + dir[0];
-            int newj = j + dir[1];
-            if(newi >= 0 && newi < m && newj >= 0 && newj < n){
-                dfs(newi,newj,m,n,k,visited);
-            }
-        }
-    }
-
-    public static int sum(int i){
-        int sum = 0;
-        while(i>10){
-            sum+=i%10;
-            i = i/10;
-        }
-        return sum+i;
+        return ans;
     }
 
     public static void main(String[] args) {
