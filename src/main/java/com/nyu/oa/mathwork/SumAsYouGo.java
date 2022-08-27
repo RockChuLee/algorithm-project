@@ -2,11 +2,15 @@ package com.nyu.oa.mathwork;
 
 public class SumAsYouGo {
     public static void main(String[] args) {
-        int[] nums1 = {2, 3, 5, 7, 1};
-        int k1 = 3;
-        int[] nums2 = {5, 10, 2, 9, 11};
-        int k2 = 3;
-        System.out.println(getMaxSumDp(nums1, k1));
+        int[] nums1 = {10, -20,-5};
+        int k1 = 2;
+        int[] nums2 = {3,
+                -4,
+                -3,
+                -5,
+                0};
+        int k2 = 2;
+//        System.out.println(getMaxSumDp(nums1, k1));
         System.out.println(getMaxSumDp(nums2, k2));
     }
 
