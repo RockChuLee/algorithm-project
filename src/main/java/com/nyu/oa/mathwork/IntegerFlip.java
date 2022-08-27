@@ -1,9 +1,9 @@
-package com.nyu.test;
+package com.nyu.oa.mathwork;
 
 import java.util.HashMap;
 import java.util.Map;
 
-class Solution {
+public class IntegerFlip {
     public static String fractionToDecimal(int numerator, int denominator) {
         long numeratorLong = (long) numerator;
         long denominatorLong = (long) denominator;
@@ -47,9 +47,5 @@ class Solution {
         }
 
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(fractionToDecimal(1, 6));
     }
 }
