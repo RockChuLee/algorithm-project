@@ -1,25 +1,52 @@
 package com.nyu.test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
-
-    public String encode(List<String> strs) {
-        StringBuilder sb = new StringBuilder();
-        for(String s: strs){
-            sb.append(s).append("+");
+    public static String fractionToDecimal(int numerator, int denominator) {
+        long numeratorLong = (long) numerator;
+        long denominatorLong = (long) denominator;
+        if (numeratorLong % denominatorLong == 0) {
+            return String.valueOf(numeratorLong / denominatorLong);
         }
-        return sb.substring(0,sb.toString().length()-1);
+
+        StringBuffer sb = new StringBuffer();
+        if (numeratorLong < 0 ^ denominatorLong < 0) {
+            sb.append('-');
+        }
+
+        // 整数部分
+        numeratorLong = Math.abs(numeratorLong);
+        denominatorLong = Math.abs(denominatorLong);
+        long integerPart = numeratorLong / denominatorLong;
+        sb.append(integerPart);
+        sb.append('.');
+
+        // 小数部分
+        StringBuffer fractionPart = new StringBuffer();
+        Map<Long, Integer> remainderIndexMap = new HashMap<Long, Integer>();
+        long remainder = numeratorLong % denominatorLong;
+        int index = 0;
+        while (remainder != 0 && !remainderIndexMap.containsKey(remainder)) {
+            remainderIndexMap.put(remainder, index);
+            remainder *= 10;
+            fractionPart.append(remainder / denominatorLong);
+            remainder %= denominatorLong;
+            index++;
+        }
+        if (remainder != 0) { // 有循环节
+            System.out.println(remainder);
+            int insertIndex = remainderIndexMap.get(remainder);
+            fractionPart.insert(insertIndex, '(');
+            fractionPart.append(')');
+        }
+        sb.append(fractionPart.toString());
+
+        return sb.toString();
     }
 
-    // Decodes a single string to a list of strings.
-    public List<String> decode(String s) {
-        String[] split = s.split("\\+");
-        return Arrays.asList(split);
+    public static void main(String[] args) {
+        System.out.println(fractionToDecimal(1, 6));
     }
-
 }
