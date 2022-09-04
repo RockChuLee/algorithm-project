@@ -1,42 +1,54 @@
 package com.nyu.test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.Arrays;
 
 public class DailyQuestion {
 
-    public static int maxSubArray(int[] data) {
-        int ans = data[0];
-        int sum = data[0];
-        int left=0, right= 0;
-        int temp=0;
-        for(int i = 1;i< data.length;i++) {
-            if(sum > 0) {
-                sum += data[i];
-
-            } else {
-                sum = data[i];
-                temp = i;
-            }
-            if(sum>ans){
-                ans = sum;
-                if(temp!=0){
-                    left = temp;
-                    temp =0;
+    public static char[][] candyCrush(char[][] matrix) {
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int mins = Integer.MAX_VALUE;
+        char[][] ans = new char[n][m];
+        for (int i = 0; i < m; i++) {
+            int cur = 0;
+            boolean flag = false;
+            for (int j = 0; j < n; j++) {
+                ans[j][i] = '.';
+                if (matrix[j][i] == '.') cur++;
+                else {
+                    if (flag && matrix[j][i] == '#') {
+                        mins = Math.min(mins, cur);
+                    }
+                    cur = 0;
+                    flag = matrix[j][i] == 'F';
                 }
-                right = i;
+            }
+            if (flag) {
+                mins = Math.min(mins, cur);
             }
         }
-        if(right==0){
-            right = left;
+        System.out.println(mins);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (matrix[i][j] == '#') ans[i][j] = '#';
+                else if (matrix[i][j] == 'F') ans[i + mins][j] = 'F';
+
+            }
         }
-        System.out.println(left+":"+right);
         return ans;
-        // return new int[]{left,right};
     }
 
+
     public static void main(String[] args) {
-        maxSubArray(new int[]{-1, 9, 0, 8, -5, 6, -24});
+        System.out.println(Arrays.deepToString(candyCrush(new char[][]
+                {{'#', '#', '#'},
+                        {'#', 'F', '#'},
+                        {'#', '.', '#'},
+                        {'#', '.', '#'},
+                        {'#', '.', '#'}})));
+
+//                System.out.println(Arrays.deepToString(candyCrush(new char[][]{
+//                {'F'}})));
+
     }
 }
