@@ -2,18 +2,10 @@ package com.nyu.oa.citadel;
 
 public class OddStrings {
     public static void main(String args[]) {
-
-
         String data[] = {"aceace", "ceceaa", "abdbdbdbakjkljhkjh"};
-
         System.out.println(checkComputation(data));
-
-
         String data2[] = {"azbde", "abcher", "acegk"};
-
         System.out.println(checkComputation(data2));
-
-
     }
 
 
