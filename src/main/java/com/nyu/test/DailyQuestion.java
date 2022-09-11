@@ -1,54 +1,42 @@
 package com.nyu.test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class DailyQuestion {
 
-    public static char[][] candyCrush(char[][] matrix) {
-        int n = matrix.length;
-        int m = matrix[0].length;
-        int mins = Integer.MAX_VALUE;
-        char[][] ans = new char[n][m];
-        for(int i=0;i<m;i++){
-            int cur = 0;
-            boolean flag = false;
-            for(int j=0;j<n;j++){
-                ans[j][i] = '.';
-                if(matrix[j][i] == '.') cur ++;
-                else {
-                    if(flag && matrix[j][i] == '#') {
-                        mins = Math.min(mins,cur);
-                    }
-                    cur = 0;
-                    flag = matrix[j][i] == 'F';
-                }
-            }
-            if(flag) {
-                mins = Math.min(mins,cur);
+    public static int partitionString(String s) {
+        int max = 0;
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+            int temp = map.get(s.charAt(i));
+            if (max < temp) {
+                max = temp;
             }
         }
-        System.out.println(mins);
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(matrix[i][j] == '#') ans[i][j] = '#';
-                else if(matrix[i][j] == 'F') ans[i+mins][j] = 'F';
+        int a = 0;
+        return max;
+    }
 
+    public static int minGroups(int[][] intervals) {
+        Arrays.sort(intervals, (o1, o2) -> Integer.compare(o1[0], o2[0]));
+        int ans = 0;
+        int target = 0;
+        int temp = 0;
+        for (int i = 0; i < intervals.length; i++) {
+            int start = intervals[i][0];
+            int end = intervals[i][1];
+            if (start > target) {
+                target = end;
             }
         }
+
         return ans;
     }
 
 
     public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(candyCrush(new char[][]
-                {{'#', '#', '#'},
-                        {'#', 'F', '#'},
-                        {'#', '.', '#'},
-                        {'#', '.', '#'},
-                        {'#', '.', '#'}})));
-
-//                System.out.println(Arrays.deepToString(candyCrush(new char[][]{
-//                {'F'}})));
-
+        minGroups(new int[][]{{1, 3}, {5, 6}, {8, 10}, {11, 13}});
     }
 }
