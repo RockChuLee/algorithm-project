@@ -1,42 +1,33 @@
 package com.nyu.test;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class DailyQuestion {
 
-    public static int partitionString(String s) {
-        int max = 0;
-        HashMap<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
-            int temp = map.get(s.charAt(i));
-            if (max < temp) {
-                max = temp;
+    public static long getMinimumHealth(List<Integer> initial_players, List<Integer> new_players, int rank){
+        PriorityQueue<Integer> minheap = new PriorityQueue<Integer>(rank, (o1, o2) -> o1.compareTo(o2));//1 2 3 4 5
+        for(Integer x:initial_players){
+            if(minheap.size() == rank && x > minheap.peek()) {
+                minheap.poll();
+                minheap.offer(x);
             }
+            else minheap.offer(x);
         }
-        int a = 0;
-        return max;
-    }
-
-    public static int minGroups(int[][] intervals) {
-        Arrays.sort(intervals, (o1, o2) -> Integer.compare(o1[0], o2[0]));
-        int ans = 0;
-        int target = 0;
-        int temp = 0;
-        for (int i = 0; i < intervals.length; i++) {
-            int start = intervals[i][0];
-            int end = intervals[i][1];
-            if (start > target) {
-                target = end;
+        long ans = minheap.peek();
+        for(int x:new_players){
+            if(minheap.size() == rank && x > minheap.peek()) {
+                minheap.poll();
+                minheap.offer(x);
+            }else if(minheap.size()<rank){
+                minheap.offer(x);
             }
+            ans += minheap.peek();
         }
-
         return ans;
     }
 
 
     public static void main(String[] args) {
-        minGroups(new int[][]{{1, 3}, {5, 6}, {8, 10}, {11, 13}});
+        System.out.println(getMinimumHealth(Arrays.asList(1, 9,7,6,1, 3), Arrays.asList(2, 2, 4), 2));
     }
 }
