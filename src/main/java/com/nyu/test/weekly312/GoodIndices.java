@@ -1,53 +1,28 @@
 package com.nyu.test.weekly312;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GoodIndices {
     public static List<Integer> goodIndices(int[] nums, int k) {
         List<Integer> res = new ArrayList<>();
-        int length = nums.length;
-        List<int[]> positive = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
-            int start = i;
-            while (i < length-1 && nums[i] <= nums[i + 1]) {
-                i++;
-            }
-            if (i != start) {
-                positive.add(new int[]{start, i});
-            }
+        int n = nums.length;
+        int[] dec = new int[n];
+        Arrays.fill(dec, 1);
+        for (int i = n - 2; i >= 1; i--) {
+            if (nums[i] <= nums[i + 1])
+                dec[i] = dec[i + 1] + 1;
         }
-        List<int[]> negative = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
-            int start = i;
-            while (i < length-1 &&nums[i] >= nums[i + 1]) {
-                i++;
-            }
-            if (i != start) {
-                negative.add(new int[]{start, i});
-            }
-        }
-        for (int i = k; i < length - k; i++) {
-            boolean pre = k == 1;
-            boolean suf = k == 1;
-            for (int[] ints : negative) {
-                if (ints[0] <= i - k && ints[1] >= i-1) {
-                    pre = true;
-                    break;
-                }
-            }
-
-            for (int[] ints : positive) {
-                if (ints[0] <= i+1 && ints[1] >= i + k) {
-                    suf = true;
-                    break;
-                }
-            }
-            if (suf && pre) {
+        int inc = 1;
+        for (int i = 1; i < n - 1; i++) {
+            if (inc >= k && dec[i + 1] >= k)
                 res.add(i);
-            }
+            if (nums[i - 1] >= nums[i])
+                inc++;
+            else
+                inc = 1;
         }
-
         return res;
     }
 
