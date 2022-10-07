@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class BoringArray {
     public static boolean transformArray(String A, String B) {
-        int N = 10;
+        int N = 2000000;
         int[] arr = new int[2 * N + 2];
 
         String[] Astr = A.split(" ");
