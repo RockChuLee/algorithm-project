@@ -1,20 +1,29 @@
 package com.nyu.test;
 
 
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Queue;
+
 public class DailyQuestion {
-    public long countSubarrays(int[] nums, int minK, int maxK) {
-        Long ans = 0L;
-        int n = nums.length, minI = -1, maxI = -1, i0 = -1;
-        for (int i = 0; i < n; ++i) {
-            int x = nums[i];
-            if (x == minK) minI = i;
-            if (x == maxK) maxI = i;
-            if (x < minK || x > maxK) i0 = i; // 子数组不能包含 nums[i0]
-            ans += Math.max(Math.min(minI, maxI) - i0, 0);
+    public static long countSubarrays(Queue<Integer> queue,int index) {
+        queue.poll();
+        while (queue.size() != 0) {
+            countSubarrays(queue, index++);
+            countSubarrays(queue, index++);
+            System.out.println(index);
         }
-        return ans;
+        return 0;
     }
 
     public static void main(String[] args) {
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.offer(1);
+        queue.offer(2);
+        queue.offer(3);
+        queue.offer(4);
+        queue.offer(5);
+        countSubarrays(queue, 0);
     }
 }
