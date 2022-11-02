@@ -1,29 +1,45 @@
 package com.nyu.test;
 
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 public class DailyQuestion {
-    public static long countSubarrays(Queue<Integer> queue,int index) {
-        queue.poll();
-        while (queue.size() != 0) {
-            countSubarrays(queue, index++);
-            countSubarrays(queue, index++);
-            System.out.println(index);
+    public int maximalPathQuality(int[] values, int[][] edges, int maxTime) {
+        List<List<int[]>> adjList = new ArrayList();
+        for (int i : values) {
+            adjList.add(new ArrayList());
         }
-        return 0;
+
+        for (int edge[] : edges) {
+            adjList.get(edge[0]).add(new int[]{edge[1], edge[2]});
+            adjList.get(edge[1]).add(new int[]{edge[0], edge[2]});
+        }
+        int[] visited = new int[values.length];
+        solve(values, adjList, visited, 0, maxTime, 0, 0);
+        return ans;
     }
 
-    public static void main(String[] args) {
-        Queue<Integer> queue = new ArrayDeque<>();
-        queue.offer(1);
-        queue.offer(2);
-        queue.offer(3);
-        queue.offer(4);
-        queue.offer(5);
-        countSubarrays(queue, 0);
+    int ans;
+
+    void solve(int[] values, List<List<int[]>> adjList, int[] visited, int node, int maxTime, int currTime, int score) {
+        if (currTime > maxTime) {
+            return;
+        }
+        if (visited[node] == 0) {
+            score += values[node];
+        }
+
+        if (node == 0) {
+            ans = Math.max(ans, score);
+        }
+
+        visited[node]++;
+
+        for (int[] v : adjList.get(node)) {
+            solve(values, adjList, visited, v[0], maxTime, currTime + v[1], score);
+        }
+
+        visited[node]--;
     }
 }
