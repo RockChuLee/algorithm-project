@@ -24,9 +24,10 @@ public class DailyQuestion {
 
     public static int maxRepeating(String sequence, String word) {
         int count = 0;
-        for (int i = 0; i < sequence.length() - word.length(); i++) {
+        for (int i = 0; i <= sequence.length() - word.length(); i++) {
             if (sequence.substring(i, i + word.length()).equals(word)) {
                 count++;
+                i+=word.length()-1;
             }
         }
         return count;
