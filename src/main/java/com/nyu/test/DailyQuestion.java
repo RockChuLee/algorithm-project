@@ -1,45 +1,39 @@
 package com.nyu.test;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DailyQuestion {
-    public int maximalPathQuality(int[] values, int[][] edges, int maxTime) {
-        List<List<int[]>> adjList = new ArrayList();
-        for (int i : values) {
-            adjList.add(new ArrayList());
+    public static int minSubArrayLen(int target, int[] nums) {
+        int minLength = Integer.MAX_VALUE;
+        int left = 0;
+        int right = 0;
+        int sum = 0;
+        while (right != nums.length || sum >= target) {
+            if (sum < target) {
+                sum += nums[right++];
+//                System.out.println(1 + ":" + sum);
+            } else {
+                if (right - left <= minLength) {
+                    minLength = right - left;
+                }
+                sum -= nums[left++];
+//                System.out.println(2 + ":" + sum);
+            }
         }
-
-        for (int edge[] : edges) {
-            adjList.get(edge[0]).add(new int[]{edge[1], edge[2]});
-            adjList.get(edge[1]).add(new int[]{edge[0], edge[2]});
-        }
-        int[] visited = new int[values.length];
-        solve(values, adjList, visited, 0, maxTime, 0, 0);
-        return ans;
+        return minLength == Integer.MAX_VALUE ? 0 : minLength;
     }
 
-    int ans;
-
-    void solve(int[] values, List<List<int[]>> adjList, int[] visited, int node, int maxTime, int currTime, int score) {
-        if (currTime > maxTime) {
-            return;
+    public static int maxRepeating(String sequence, String word) {
+        int count = 0;
+        for (int i = 0; i < sequence.length() - word.length(); i++) {
+            if (sequence.substring(i, i + word.length()).equals(word)) {
+                count++;
+            }
         }
-        if (visited[node] == 0) {
-            score += values[node];
-        }
+        return count;
+    }
 
-        if (node == 0) {
-            ans = Math.max(ans, score);
-        }
-
-        visited[node]++;
-
-        for (int[] v : adjList.get(node)) {
-            solve(values, adjList, visited, v[0], maxTime, currTime + v[1], score);
-        }
-
-        visited[node]--;
+    public static void main(String[] args) {
+//        System.out.println(minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3, 2, 3, 1, 2, 4, 3, 99, 100, 2, 3, 1, 2, 4, 3}));
+        System.out.println(maxRepeating("aaabaaaabaaabaaaabaaaabaaaabaaaaba", "aaaba"));
     }
 }
