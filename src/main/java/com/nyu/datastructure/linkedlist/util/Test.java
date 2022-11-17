@@ -1,6 +1,7 @@
 package com.nyu.datastructure.linkedlist.util;
 
 import com.nyu.datastructure.linkedlist.LinkedListCycle;
+import com.nyu.datastructure.linkedlist.RemoveDuplicatesfromSortedList2;
 import com.nyu.datastructure.linkedlist.ReverseLinkedList;
 
 import java.util.Arrays;
@@ -10,12 +11,15 @@ public class Test {
 
     public static LinkedListCycle linkedListCycle = new LinkedListCycle();
     public static ReverseLinkedList reverseLinkedList = new ReverseLinkedList();
+    public static RemoveDuplicatesfromSortedList2 removeDuplicatesfromSortedList2 = new RemoveDuplicatesfromSortedList2();
 
     public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(3, 2, 0, -4);
+        List<Integer> list = Arrays.asList(1,2,3,3,4,4,5);
         ListNode head = initListNode(list);
 
-        System.out.println(toListNodeString(reverseLinkedList.iterator(head)));
+        ListNode listNode = removeDuplicatesfromSortedList2.deleteDuplicates(head);
+
+        System.out.println(toListNodeString(listNode));
     }
 
     // initial a linkedlist
