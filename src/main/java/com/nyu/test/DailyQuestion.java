@@ -3,30 +3,64 @@ package com.nyu.test;
 
 public class DailyQuestion {
 
-    public boolean canChoose(int[][] groups, int[] nums) {
-        int n = 0;
-        int g = 0;
-        while (g < groups.length && n < nums.length) {
-            int[] group = groups[g];
-            int index = 0;
-            if (nums[n] == group[index]) {
-                index++;
-                if (index == group.length) {
-                    g++;
-                    index = 0;
-                    break;
-                }
-            } else {
-                index = 0;
+    public static int trap(int[] height) {
+        int[] topOrBottom = new int[height.length];
+        for (int i = 1; i < height.length - 1; i++) {
+            if ((height[i] >= height[i - 1] && height[i] > height[i + 1]) || (height[i] > height[i - 1] && height[i] >= height[i + 1])) {
+                topOrBottom[i] = 1;
             }
-            n++;
-
+            if ((height[i] <= height[i - 1] && height[i] < height[i + 1]) || (height[i] < height[i - 1] && height[i] <= height[i + 1])) {
+                topOrBottom[i] = -1;
+            }
         }
-        return g == groups.length;
+
+        int index = 0;
+        int ans = 0;
+        boolean flag = false;
+        while (index < height.length) {
+            int firstTop = 0;
+            int bottom = 0;
+            int secondTop = 0;
+            if (topOrBottom[index] == 1) {
+                firstTop = index;
+                index++;
+                while (index < height.length) {
+                    if (topOrBottom[index] == -1) {
+                        bottom = index;
+                        index++;
+                        while (index < height.length) {
+                            if (topOrBottom[index] == 1) {
+                                secondTop = index;
+                                flag = true;
+                                int top = Math.min(height[firstTop], height[secondTop]);
+                                for (int j = firstTop; j <= secondTop; j++) {
+                                    if (height[j] < top) {
+                                        ans += top - height[j];
+                                    }
+                                }
+                            }
+                            if (flag) {
+                                break;
+                            }
+                            index++;
+                        }
+                    }
+                    if (flag) {
+                        break;
+                    }
+                    index++;
+                }
+            }
+            if (flag) {
+                flag = false;
+                index--;
+            }
+            index++;
+        }
+        return ans;
     }
 
     public static void main(String[] args) {
-//        System.out.println(minSubArrayLen(7, new int[]{2, 3, 1, 2, 4, 3, 2, 3, 1, 2, 4, 3, 99, 100, 2, 3, 1, 2, 4, 3}));
-//        System.out.println(maxRepeating("aaabaaaabaaabaaaabaaaabaaaabaaaaba", "aaaba"));
+        trap(new int[]{4,2,0,3,2,5});
     }
 }
