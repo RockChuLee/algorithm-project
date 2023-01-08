@@ -1,4 +1,4 @@
-package com.nyu.datastructure.string;
+package com.nyu.algorithm.string;
 
 // https://leetcode-cn.com/problems/ransom-note/
 public class RansomNote {

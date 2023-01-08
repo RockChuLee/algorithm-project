@@ -1,4 +1,4 @@
-package com.nyu.datastructure.string;
+package com.nyu.algorithm.string;
 
 import java.util.Arrays;
 import java.util.HashMap;

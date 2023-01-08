@@ -3,64 +3,40 @@ package com.nyu.test;
 
 public class DailyQuestion {
 
-    public static int trap(int[] height) {
-        int[] topOrBottom = new int[height.length];
-        for (int i = 1; i < height.length - 1; i++) {
-            if ((height[i] >= height[i - 1] && height[i] > height[i + 1]) || (height[i] > height[i - 1] && height[i] >= height[i + 1])) {
-                topOrBottom[i] = 1;
-            }
-            if ((height[i] <= height[i - 1] && height[i] < height[i + 1]) || (height[i] < height[i - 1] && height[i] <= height[i + 1])) {
-                topOrBottom[i] = -1;
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int up = 0;
+        int left = 0;
+        int down = m-1;
+        int right = n-1;
+        int row = -1;
+        while(up<=down){
+            int mid = up+(down-up)/2;
+            if(matrix[mid][0]<target){
+                up = mid+1;
+            }else if(matrix[mid][0]>target){
+                down = mid-1;
+            }else if(matrix[mid][0]==target){
+                return true;
             }
         }
+        row = matrix[up][0]<target?up:up-1;
 
-        int index = 0;
-        int ans = 0;
-        boolean flag = false;
-        while (index < height.length) {
-            int firstTop = 0;
-            int bottom = 0;
-            int secondTop = 0;
-            if (topOrBottom[index] == 1) {
-                firstTop = index;
-                index++;
-                while (index < height.length) {
-                    if (topOrBottom[index] == -1) {
-                        bottom = index;
-                        index++;
-                        while (index < height.length) {
-                            if (topOrBottom[index] == 1) {
-                                secondTop = index;
-                                flag = true;
-                                int top = Math.min(height[firstTop], height[secondTop]);
-                                for (int j = firstTop; j <= secondTop; j++) {
-                                    if (height[j] < top) {
-                                        ans += top - height[j];
-                                    }
-                                }
-                            }
-                            if (flag) {
-                                break;
-                            }
-                            index++;
-                        }
-                    }
-                    if (flag) {
-                        break;
-                    }
-                    index++;
-                }
+        while(left<=right){
+            int mid = left+(right-left)/2;
+            if(matrix[row][mid]<target){
+                left = mid+1;
+            }else if(matrix[row][mid]>target){
+                right = mid-1;
+            }else if(matrix[row][mid]==target){
+                return true;
             }
-            if (flag) {
-                flag = false;
-                index--;
-            }
-            index++;
         }
-        return ans;
+        return false;
     }
 
     public static void main(String[] args) {
-        trap(new int[]{4,2,0,3,2,5});
+        searchMatrix(new int[][]{{1,3,5,7},{10,11,16,20},{23,30,34,60}},3);
     }
 }
