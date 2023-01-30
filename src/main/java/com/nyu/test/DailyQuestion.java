@@ -1,27 +1,25 @@
 package com.nyu.test;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DailyQuestion {
-    public long putMarbles(int[] weights, int k) {
-        int n = weights.length;
-        long[][] dp = new long[n + 1][k + 1];
-        for (int i = 0; i <= n; i++) {
-            Arrays.fill(dp[i], Integer.MIN_VALUE);
-        }
-        dp[0][0] = 0;
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= k; j++) {
-                for (int l = 0; l < i; l++) {
-                    dp[i][j] = Math.max(dp[i][j], dp[l][j - 1] + (long) weights[l] * (long) weights[i - 1]);
-                }
+    public static List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<>());
+        for(int n:nums){
+            List<List<Integer>> copy = new ArrayList<>(result);
+            for(List<Integer> temp: result){
+                temp.add(n);
             }
+            result.addAll(copy);
         }
-        long res = 0;
-        for (int i = 0; i <= k; i++) {
-            res = Math.max(res, dp[n][i]);
-        }
-        return res;
+        return result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(subsets(new int[]{1, 2, 3}));
     }
 }
