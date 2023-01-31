@@ -6,6 +6,7 @@ public class FastPower {
     // time complexity: O(logn)
     // space complexity: O(1)
     public double myPow(double x, int n) {
+        // if n = -2147483648, the -n will be out of bound.
         long N = n;
         if (N < 0) {
             x = 1 / x;
@@ -25,23 +26,26 @@ public class FastPower {
 
     // recursion
     // time complexity: O(logn)
-    // space complexity: O(1)
-    public double myPow1(double x, int n) {
+    // space complexity: O(logn)
+    private double fastPow(double x, long n) {
         if (n == 0) {
-            return 1;
+            return 1.0;
         }
+        double half = fastPow(x, n / 2);
+        if (n % 2 == 0) {
+            return half * half;
+        } else {
+            return half * half * x;
+        }
+    }
+
+    public double myPow1(double x, int n) {
         long N = n;
-        double result = x;
         if (N < 0) {
             x = 1 / x;
             N = -N;
         }
-        if (N % 2 == 1) {
-            result = x * result;
-        }
-        x = x * x;
-        result = myPow1(result, n / 2);
-        return result;
+        return fastPow(x, N);
     }
 
 }
