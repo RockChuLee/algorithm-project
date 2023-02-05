@@ -14,12 +14,14 @@ public class Test {
     public static RemoveDuplicatesfromSortedList2 removeDuplicatesfromSortedList2 = new RemoveDuplicatesfromSortedList2();
 
     public static void main(String[] args) {
-        List<Integer> list = Arrays.asList(1,2,3,3,4,4,5);
-        ListNode head = initListNode(list);
-
-        ListNode listNode = removeDuplicatesfromSortedList2.deleteDuplicates(head);
-
-        System.out.println(toListNodeString(listNode));
+//        List<Integer> list = Arrays.asList(1,2,3,3,4,4,5);
+//        ListNode head = initListNode(list);
+//
+//        ListNode listNode = removeDuplicatesfromSortedList2.deleteDuplicates(head);
+//
+//        System.out.println(toListNodeString(listNode));
+        MyLinkedList myLinkedList = new MyLinkedList();
+        myLinkedList.ListInsert(myLinkedList, 1, 1);
     }
 
     // initial a linkedlist
@@ -43,4 +45,5 @@ public class Test {
         }
         return stringBuilder.substring(0,stringBuilder.length()-2);
     }
+
 }
