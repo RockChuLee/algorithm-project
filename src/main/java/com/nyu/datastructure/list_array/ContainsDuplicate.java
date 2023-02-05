@@ -1,4 +1,4 @@
-package com.nyu.datastructure.array;
+package com.nyu.datastructure.list_array;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.nyu.datastructure.linkedlist;
+package com.nyu.datastructure.list_linkedlist;
 
 import java.util.ArrayList;
 import java.util.Random;

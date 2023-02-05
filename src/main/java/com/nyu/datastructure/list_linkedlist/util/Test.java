@@ -1,8 +1,8 @@
-package com.nyu.datastructure.linkedlist.util;
+package com.nyu.datastructure.list_linkedlist.util;
 
-import com.nyu.datastructure.linkedlist.LinkedListCycle;
-import com.nyu.datastructure.linkedlist.RemoveDuplicatesfromSortedList2;
-import com.nyu.datastructure.linkedlist.ReverseLinkedList;
+import com.nyu.datastructure.list_linkedlist.LinkedListCycle;
+import com.nyu.datastructure.list_linkedlist.RemoveDuplicatesfromSortedList2;
+import com.nyu.datastructure.list_linkedlist.ReverseLinkedList;
 
 import java.util.Arrays;
 import java.util.List;

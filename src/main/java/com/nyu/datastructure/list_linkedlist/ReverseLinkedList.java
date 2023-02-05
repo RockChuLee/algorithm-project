@@ -1,6 +1,6 @@
-package com.nyu.datastructure.linkedlist;
+package com.nyu.datastructure.list_linkedlist;
 
-import com.nyu.datastructure.linkedlist.util.ListNode;
+import com.nyu.datastructure.list_linkedlist.util.ListNode;
 
 //https://leetcode-cn.com/problems/reverse-linked-list/
 public class ReverseLinkedList {

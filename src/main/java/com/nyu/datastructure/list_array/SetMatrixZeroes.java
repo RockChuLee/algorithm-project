@@ -1,4 +1,4 @@
-package com.nyu.datastructure.array;
+package com.nyu.datastructure.list_array;
 
 public class SetMatrixZeroes {
     public void setZeroes(int[][] matrix) {

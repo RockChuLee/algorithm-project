@@ -1,4 +1,4 @@
-package com.nyu.datastructure.array.util;
+package com.nyu.datastructure.list_array.util;
 
 public class MyArray {
     public static final int MAXSIZE = 200;

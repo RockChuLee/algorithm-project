@@ -1,8 +1,8 @@
-package com.nyu.datastructure.array.util;
+package com.nyu.datastructure.list_array.util;
 
-import com.nyu.datastructure.array.ContainsDuplicate;
-import com.nyu.datastructure.array.MaximumSubarray;
-import com.nyu.datastructure.array.MergeSortedArray;
+import com.nyu.datastructure.list_array.ContainsDuplicate;
+import com.nyu.datastructure.list_array.MaximumSubarray;
+import com.nyu.datastructure.list_array.MergeSortedArray;
 
 public class Test {
     static int[] nums = new int[]{-2,4,-1,2};

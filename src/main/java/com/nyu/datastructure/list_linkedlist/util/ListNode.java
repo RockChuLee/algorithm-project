@@ -1,4 +1,4 @@
-package com.nyu.datastructure.linkedlist.util;
+package com.nyu.datastructure.list_linkedlist.util;
 
 public class ListNode {
     public int val;
