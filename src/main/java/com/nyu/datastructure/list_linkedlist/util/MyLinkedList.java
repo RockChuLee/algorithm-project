@@ -5,7 +5,6 @@ public class MyLinkedList {
     public static final int ERROR = 0;
     public static final int TRUE = 1;
     public static final int FALSE = 0;
-    private int length;
     private ListNode node;
     public int returnValue;
     //让构造函数为 private，这样该类就不会被实例化
@@ -69,22 +68,29 @@ public class MyLinkedList {
     // 时间复杂度：同插入操作
     // 空间复杂度 O(1)
     public int ListDelete(MyLinkedList L, int i, int e) {
-        int j;
-        ListNode p = L.node.next;
-        ListNode q;
-        j = 1;
+        // 声明一个结点p指向链表的第一个结点
+        ListNode p = L.node;
+        // 初始化j从1开始
+        int j = 1;
+        // 当j<i时，就遍历链表，让p的指针向后移动，不断指向下一个结点，j累加1
         while (p != null && j < i) {
             p = p.next;
             ++j;
         }
-        if (p.next == null || j > i) {
+        // 若到链表末尾p为空，则说明第i个元素不存在
+        if (p == null || p.next == null || j > i) {
             return ERROR;
         }
-        q = p.next;
+        // 否则查找成功，将欲删除的结点p.next赋值给q
+        ListNode q = p.next;
+        // 单链表的删除标准语句 p.next = q.next;
         p.next = q.next;
+        // 将q结点中的数据赋值给e，作为返回
         e = q.val;
         returnValue = e;
+        // 释放q结点;
         q = null;
+        // 返回状态
         return OK;
     }
 
@@ -124,6 +130,6 @@ public class MyLinkedList {
     //返回线性表L的元素个数。
     public int ListLength(MyLinkedList L) {
         //TODO
-        return L.length;
+        return 0;
     }
 }
