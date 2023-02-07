@@ -8,42 +8,42 @@ public class MergeTwoSortedLists {
     // recursion
     // Time Complexity : O(n+m)，其中 n 和 m 分别为两个链表的长度
     // Space Complexity : O(n+m)，其中 n 和 m 分别为两个链表的长度
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if (l1 == null) {
-            return l2;
-        } else if (l2 == null) {
-            return l1;
-        } else if (l1.val < l2.val) {
-            l1.next = mergeTwoLists(l1.next, l2);
-            return l1;
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if (list1 == null) {
+            return list2;
+        } else if (list2 == null) {
+            return list1;
+        } else if (list1.val < list2.val) {
+            list1.next = mergeTwoLists(list1.next, list2);
+            return list1;
         } else {
-            l2.next = mergeTwoLists(l1, l2.next);
-            return l2;
+            list2.next = mergeTwoLists(list1, list2.next);
+            return list2;
         }
     }
 
     // iteration
     // Time Complexity : O(n+m)，其中 n 和 m 分别为两个链表的长度
     // Space Complexity : O(1)，我们只需要常数的空间存放若干变量
-    public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
-        ListNode prehead = new ListNode(-1);
+    public ListNode mergeTwoLists1(ListNode list1, ListNode list2) {
+        ListNode prev = new ListNode(-1);
 
-        ListNode prev = prehead;
-        while (l1 != null && l2 != null) {
-            if (l1.val <= l2.val) {
-                prev.next = l1;
-                l1 = l1.next;
+        ListNode head = prev;
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                head.next = list1;
+                list1 = list1.next;
             } else {
-                prev.next = l2;
-                l2 = l2.next;
+                head.next = list2;
+                list2 = list2.next;
             }
-            prev = prev.next;
+            head = head.next;
         }
 
-        // 合并后 l1 和 l2 最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可
-        prev.next = l1 == null ? l2 : l1;
+        // 合并后 list1 和 list2 最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可
+        head.next = list1 == null ? list2 : list1;
 
-        return prehead.next;
+        return prev.next;
     }
 }
 
