@@ -6,7 +6,7 @@ public class MyLinkedList {
     public static final int TRUE = 1;
     public static final int FALSE = 0;
     private ListNode node;
-    public int returnValue;
+    public int returnValue = -1;
     //让构造函数为 private，这样该类就不会被实例化
     public MyLinkedList(){
         this.node = new ListNode(-1);
