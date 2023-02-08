@@ -1,24 +1,21 @@
 package com.nyu.test.weekly331;
 
-import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class PickGifts {
     public static long pickGifts(int[] gifts, int k) {
-        if (gifts.length == 0) {
-            return 0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>(gifts.length, Comparator.reverseOrder());
+        for (int gift : gifts) {
+            pq.offer(gift);
         }
-        while (k > 0) {
-            Arrays.sort(gifts);
-            int length = gifts.length;
-            int max = gifts[length - 1];
-            gifts[length - 1] = (int) Math.sqrt(max);
-            k--;
+
+        for (int i = 0; i < k; i++) {
+            pq.offer((int) Math.sqrt(pq.poll()));
         }
-        int sum = 0;
-        for (int n : gifts) {
-            sum += n;
-        }
-        return sum;
+
+        return pq.stream().mapToLong(Integer::intValue).sum();
+
     }
 
     public static void main(String[] args) {
