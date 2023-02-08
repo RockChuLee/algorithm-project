@@ -2,44 +2,41 @@ package com.nyu.datastructure.list_linkedlist;
 
 import com.nyu.datastructure.list_linkedlist.util.ListNode;
 
-//https://leetcode.com/problems/reorder-list/
+// https://leetcode.com/problems/reorder-list/
 public class ReorderList {
-
     public void reorderList(ListNode head) {
+        // handle special situation
         if (head == null) return;
 
-        // find the middle of linked list [Problem 876]
-        // in 1->2->3->4->5->6 find 4
-        ListNode slow = head, fast = head;
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
+        // two point to find mid of linklist
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast!=null&&fast.next!=null){
             fast = fast.next.next;
+            slow = slow.next;
         }
 
-        // reverse the second part of the list [Problem 206]
-        // convert 1->2->3->4->5->6 into 1->2->3->4 and 6->5->4
-        // reverse the second half in-place
-        ListNode prev = null, curr = slow, tmp;
-        while (curr != null) {
-            tmp = curr.next;
-
+        // reverse the last part of linklist
+        ListNode curr = slow;
+        ListNode prev = null;
+        while(curr!=null){
+            ListNode next = curr.next;
             curr.next = prev;
             prev = curr;
-            curr = tmp;
+            curr = next;
         }
+        ListNode l1 = head;
+        ListNode l2 = prev;
 
-        // merge two sorted linked lists [Problem 21]
-        // merge 1->2->3->4 and 6->5->4 into 1->6->2->5->3->4
-        ListNode first = head, second = prev;
-        while (second.next != null) {
-            tmp = first.next;
-            first.next = second;
-            first = tmp;
+        // merge just like fried dough twist
+        while(l2.next!=null){
+            ListNode temp = l1.next;
+            l1.next = l2;
+            l1 = temp;
 
-            tmp = second.next;
-            second.next = first;
-            second = tmp;
+            temp = l2.next;
+            l2.next = l1;
+            l2 = temp;
         }
     }
-
 }
