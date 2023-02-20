@@ -1,6 +1,7 @@
 package com.nyu.test;
 
-import java.util.Collections;
+import javax.xml.transform.Source;
+import java.util.*;
 
 class DailyQuestion {
     private static int extracted() {
@@ -23,8 +24,80 @@ class DailyQuestion {
         return res >> 1;
     }
 
-    public static void main(String[] args) {
+    public boolean checkValidString(String s) {
+        int valid = 0;
+        int star = 0;
+        for(int i = 0;i<s.length();i++){
+            switch(s.charAt(i)){
+                case '(':
+                    valid++;
+                    break;
+                case '*':
+                    star ++ ;
+                    break;
+                case ')':
+                    if(valid>0){
+                        valid --;
+                    }else{
+                        return false;
+                    }
+                    break;
+            }
+        }
+        return valid<=star;
+    }
 
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<Integer>(Collections.singletonList(1));
+    }
+
+    private static void extracted1() {
+        String s = Integer.toBinaryString(54);
+        String s1 = new StringBuilder(s).reverse().toString();
+        char[] chars = s1.toCharArray();
+        int start = -1;
+        int end = -1;
+        int res = 0;
+        boolean flag = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == '1' && !flag) {
+                start = i;
+                flag = true;
+            } else if (chars[i] == '1' && flag) {
+                continue;
+            }
+
+            if (chars[i] == '0' && flag) {
+                end = i;
+                flag = false;
+            } else if (chars[i] == '0' && !flag) {
+                continue;
+            }
+
+            if (end != -1 && start != -1 ) {
+                if( end - start >= 2){
+                    for (int j = start; j < end; j++) {
+                        chars[j] = '0';
+                    }
+                    chars[end] = '1';
+                    i = end -1;
+                    end = -1;
+                    start = -1;
+                    res +=1;
+                } else {
+                    end = -1;
+                    start = -1;
+                }
+
+            }
+        }
+        if (start != -1) {
+            for (int j = start; j < chars.length; j++) {
+                chars[j] = '0';
+            }
+            res ++;
+        }
+        System.out.println(res);
     }
 }
 
