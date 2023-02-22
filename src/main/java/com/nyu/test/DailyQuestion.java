@@ -79,6 +79,7 @@ class DailyQuestion {
         numIslands(new char[][]{{'1', '1', '0', '0', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}});
     }
 
+
     private static void extracted1() {
         String s = Integer.toBinaryString(54);
         String s1 = new StringBuilder(s).reverse().toString();
