@@ -4,7 +4,7 @@ public class Fibonacci {
 
     //Time Complexity: O(N)
     //Auxiliary Space: O(1)
-    public static void iterator(int N) {
+    public static int iterator(int N) {
         int num1 = 0, num2 = 1;
 
         int counter = 0;
@@ -20,6 +20,7 @@ public class Fibonacci {
             num2 = num3;
             counter = counter + 1;
         }
+        return counter;
     }
 
     //Time Complexity: O(2^N)
@@ -41,7 +42,7 @@ public class Fibonacci {
         // Declare an array to store
         // Fibonacci numbers.
         // 1 extra to handle case, n = 0
-        int f[] = new int[n + 2];
+        int[] f = new int[n + 2];
 
         int i;
 
@@ -63,8 +64,8 @@ public class Fibonacci {
 
     public static void main(String args[]) {
         int N = 10;
-        iterator(N);
-        recursion(N);
-        dynamicProgramming(N);
+        System.out.println(iterator(N));
+        System.out.println(recursion(N));
+        System.out.println(dynamicProgramming(N));
     }
 }
