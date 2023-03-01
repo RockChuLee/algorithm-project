@@ -1,6 +1,8 @@
 package com.nyu.datastructure.queue_stack;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 //https://leetcode-cn.com/problems/valid-parentheses/
 public class ValidParentheses {
